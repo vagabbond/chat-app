@@ -1,74 +1,23 @@
 import { FC } from 'react';
-import UserMessage from './UserMessage/UserMessage';
+import { IMessage } from '../../../types/state';
 
-const ChatMain: FC = () => {
+import UserMessage from './UserMessage/UserMessage';
+interface IProps {
+  messages: IMessage[];
+  photo: string;
+}
+
+const ChatMain: FC<IProps> = ({ messages, photo }) => {
   return (
     <main className="h-[78vh] bg-[#faf8f9] p-5 overflow-y-auto">
       <ul className="flex w-full flex-col gap-2 ">
-        <UserMessage
-          id="23332edcsa"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="2"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="23332edcsa"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="2"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="23332edcsa"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="2"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="23332edcsa"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
-        <UserMessage
-          id="2"
-          message={{
-            value:
-              'sdfaadsgasdgdfnnn nnndvjfniqebniqbqeenv qenvjuihcr9emmrhch,eg h gh h8g0hu hg ghweru ug hupwegr ough h hw wep wper wh ew we hep hwe gweu hu uhw weuweruh hu erwuiw oehe riha',
-            date: new Date()
-          }}
-        />
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <UserMessage key={message._id} message={message} photo={photo} />
+          ))
+        ) : (
+          <p className="text-center text-gray-500">No messages yet</p>
+        )}
       </ul>
     </main>
   );
