@@ -3,7 +3,7 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import path from 'path';
+
 import { connect } from './config/db';
 import { userRouter } from './routes/user.route';
 import { chatRouter } from './routes/chat.route';
@@ -26,14 +26,11 @@ const corsOptions = {
 
 const port = 3000;
 app.use(cors(corsOptions));
-app.use(express.static(path.join(__dirname, '../../client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', chatRouter);
 app.use('/api', userRouter);
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-});
+
 app.use(notFound);
 app.use(errorHandler);
 server.listen(port, async () => {
